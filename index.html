@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome — Nuqman Naimi</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    :root {
+      --accent: #00ffff;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('bg1.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .welcome-container {
+      background: rgba(0, 10, 20, 0.7);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 30px var(--accent), inset 0 0 20px rgba(0, 255, 255, 0.3);
+      border-radius: 16px;
+      padding: 60px 40px;
+      width: 340px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent), 0 0 30px rgba(0, 255, 255, 0.5);
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent);
+      margin-bottom: 25px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    button {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+    }
+
+    button:hover {
+      background: rgba(0, 255, 255, 0.15);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+      transform: scale(1.05);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(200, 255, 255, 0.7);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--accent); }
+      to { text-shadow: 0 0 25px var(--accent), 0 0 45px #00eaff; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* CHATBOT BUTTON */
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      color: black;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      font-weight: bold;
+      box-shadow: 0 0 20px var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* CHATBOX (Hidden by default) */
+    #chatbox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 370px;
+      background: rgba(10, 20, 30, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 20px var(--accent);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.4s ease;
+    }
+
+    #chatbox-header {
+      padding: 10px;
+      background: rgba(0, 255, 255, 0.2);
+      text-align: center;
+      border-bottom: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: bold;
+      position: relative;
+    }
+
+    #close-chat {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      color: white;
+    }
+
+    #chatbox-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .msg-user {
+      text-align: right;
+      color: #0ff;
+      margin: 5px 0;
+    }
+
+    .msg-bot {
+      text-align: left;
+      color: #fff;
+      margin: 5px 0;
+    }
+
+    #chatbox-input-area {
+      display: flex;
+      border-top: 1px solid var(--accent);
+    }
+
+    #chatbox-input {
+      flex-grow: 1;
+      padding: 8px;
+      border: none;
+      outline: none;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+    }
+
+    #send-btn {
+      width: 70px;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="welcome-container">
+    <h1>Welcome to My Website Resume</h1>
+    <img src="nuqman.jpg" alt="Nuqman Naimi" class="profile-pic">
+    <button id="resumeBtn"><span>See My Resume</span></button>
+  </div>
+
+  <footer>© 2025 Nuqman Naimi</footer>
+
+  <!-- CHATBOT BUTTON -->
+  <button id="chatbot-btn">💬</button>
+
+  <!-- CHATBOX -->
+  <div id="chatbox">
+    <div id="chatbox-header">
+      Chat Assistant
+      <span id="close-chat">✖</span>
+    </div>
+    <div id="chatbox-messages">
+      <div class="msg-bot">Hello! How can I help you?</div>
+    </div>
+
+    <div id="chatbox-input-area">
+      <input type="text" id="chatbox-input" placeholder="Type message...">
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <script>
+  // Open chatbox
+  document.getElementById("chatbot-btn").onclick = function() {
+    document.getElementById("chatbox").style.display = "flex";
+  };
+
+  // Close chatbox
+  document.getElementById("close-chat").onclick = function() {
+    document.getElementById("chatbox").style.display = "none";
+  };
+
+  // Send message (button)
+  document.getElementById("send-btn").onclick = sendMessage;
+
+  // Send message (Enter key)
+  document.getElementById("chatbox-input").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  // Bot Reply Logic
+  function botReply(userText) {
+    userText = userText.toLowerCase();
+
+    if (userText.includes("log in") || userText.includes("login")) {
+      return "To log in, simply tap the “See My Resume” button — it will take you directly to your homepage.";
+    }
+
+    if (userText.includes("resume")) {
+      return "Your resume can be accessed by clicking the “See My Resume” button below your profile picture.";
+    }
+
+    if (userText.includes("hello") || userText.includes("hi")) {
+      return "Hi there! How can I assist you today?";
+    }
+
+    if (userText.includes("help")) {
+      return "Sure! You can ask about logging in, your resume, navigation, or anything related to your site.";
+    }
+
+    if (userText.includes("who are you")) {
+      return "I’m your futuristic virtual assistant, built to guide users through your website.";
+    }
+
+    // Default fallback
+    return `I received: "${userText}". How else can I assist you?`;
+  }
+
+  // Send Message Function
+  function sendMessage() {
+    let input = document.getElementById("chatbox-input");
+    let msg = input.value.trim();
+    if (msg === "") return;
+
+    let messageBox = document.getElementById("chatbox-messages");
+
+    // Display user message
+    messageBox.innerHTML += `<div class="msg-user">${msg}</div>`;
+    input.value = "";
+
+    // Bot responds
+    setTimeout(() => {
+      const reply = botReply(msg);
+      messageBox.innerHTML += `<div class="msg-bot">${reply}</div>`;
+      messageBox.scrollTop = messageBox.scrollHeight;
+    }, 600);
+
+    messageBox.scrollTop = messageBox.scrollHeight;
+  }
+
+  // "See My Resume" button
+  document.getElementById("resumeBtn").addEventListener("click", function() {
+    window.location.href = "./home.html";
+  });
+</script>
+
+</body>
+</html>
